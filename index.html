@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Ramadan Mariam</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: radial-gradient(circle at top, #1b3a4b, #081c24);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      color: white;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .moon {
+      position: absolute;
+      top: 60px;
+      right: 80px;
+      width: 120px;
+      height: 120px;
+      background: #f1f1c1;
+      border-radius: 50%;
+      box-shadow: -25px 0 0 #081c24;
+    }
+
+    h1 {
+      font-size: 3rem;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .heart {
+      color: #ff6b81;
+    }
+
+    .click-me {
+      margin-top: 20px;
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    .burst {
+      position: absolute;
+      color: #ff6b81;
+      animation: float 2s forwards;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      to {
+        transform: translateY(-150px) scale(1.5);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="moon"></div>
+
+  <h1 id="title">
+    Happy Ramadan Mariam <span class="heart">❤</span>
+  </h1>
+
+  <div class="click-me" onclick="goNext()">Click me</div>
+
+  <script>
+    const title = document.getElementById("title");
+
+    title.addEventListener("click", (e) => {
+      for (let i = 0; i < 25; i++) {
+        const h = document.createElement("div");
+        h.className = "burst";
+        h.innerHTML = "❤";
+        h.style.left = e.clientX + (Math.random()*60 - 30) + "px";
+        h.style.top = e.clientY + (Math.random()*60 - 30) + "px";
+        document.body.appendChild(h);
+        setTimeout(() => h.remove(), 2000);
+      }
+    });
+
+    function goNext() {
+      window.location.href = "second.html";
+    }
+  </script>
+</body>
+</html>
