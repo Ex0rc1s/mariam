@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Message</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('https://www.transparenttextures.com/patterns/arabesque.png') repeat, linear-gradient(to bottom, #013A6B, #004E95);
+            color: #FFD700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            text-align: center;
+            z-index: 1;
+            max-width: 90%; /* Better for mobile */
+            overflow-y: auto; /* Scroll if text is long */
+            max-height: 80vh;
+        }
+        p {
+            font-size: 1.1em; /* Smaller base for mobile */
+            line-height: 1.5;
+        }
+        .cat {
+            position: absolute;
+            width: 40px; /* Smaller for mobile */
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .cat.jump {
+            transform: translateY(-30px); /* Adjusted jump */
+        }
+        /* Ramadan decorations */
+        .moon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 3em; /* Smaller base */
+            color: #FFD700;
+        }
+        .lantern {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            font-size: 3em; /* Smaller base */
+            color: #FF4500;
+        }
+        /* Shower particles */
+        .shower-particle {
+            position: absolute;
+            width: 12px; /* Smaller particles */
+            height: 12px;
+            background: #FF69B4;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: shower 2s linear forwards;
+        }
+        @keyframes shower {
+            0% { transform: translateY(-100vh); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+        /* Mobile optimizations */
+        @media (max-width: 600px) {
+            p {
+                font-size: 1em;
+            }
+            .moon, .lantern {
+                font-size: 2.5em;
+            }
+            .cat {
+                width: 30px;
+            }
+            .container {
+                max-width: 100%;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="moon">☾</div>
+    <div class="lantern">🏮</div>
+    <div class="container">
+        <p id="long-text">
+            <!-- Paste your long text here. For example: -->
+            Dear Mariam, Wishing you a blessed Ramadan filled with peace, joy, and endless blessings. May this holy month bring you closer to your dreams and fill your heart with love. Remember, every fast is a step towards spiritual growth, and every prayer is heard. Happy Ramadan! ❤️<br><br>
+            Add more paragraphs as needed. You can also insert small fun pics like this: <img src="https://img.icons8.com/emoji/48/000000/star-struck.png" alt="Fun pic" style="width: 30px;"><br>
+            Feel free to edit this section to add your full text and images.
+        </p>
+    </div>
+    <img src="https://img.icons8.com/emoji/48/000000/cat.png" class="cat" style="bottom: 50px; left: 20px;" onclick="jump(this)">
+    <img src="https://img.icons8.com/emoji/48/000000/cat.png" class="cat" style="bottom: 50px; right: 20px;" onclick="jump(this)">
+    <img src="https://img.icons8.com/emoji/48/000000/cat.png" class="cat" style="top: 100px; left: 50px;" onclick="jump(this)">
+
+    <script>
+        function createShower() {
+            for (let i = 0; i < 30; i++) { // Fewer particles for mobile performance
+                const particle = document.createElement('div');
+                particle.className = 'shower-particle';
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.animationDelay = `${Math.random() * 2}s`;
+                document.body.appendChild(particle);
+                setTimeout(() => particle.remove(), 4000);
+            }
+        }
+        window.onload = createShower;
+
+        function jump(cat) {
+            cat.classList.add('jump');
+            setTimeout(() => cat.classList.remove('jump'), 300);
+        }
+    </script>
+</body>
+</html>
